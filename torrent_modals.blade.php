@@ -42,6 +42,7 @@
     </div>
 </div>
 
+@if ($torrent->id == 422)
 <div class="modal fade" id="modal_streaming_ipfs" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dark">
         <div class="modal-content">
@@ -77,6 +78,7 @@
         </div>
     </div>
 </div>
+@endif
 
 <div class="modal fade" id="modal_torrent_delete" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dark">
