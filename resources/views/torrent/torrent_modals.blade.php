@@ -1,3 +1,46 @@
+@if ( !empty($torrent->stream_id))
+<div class="modal fade" id="modal_streaming_ipfs" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dark">
+        <div class="modal-content">
+            <meta charset="utf-8">
+            <title>Trying to stream {{ $torrent->name }}</title>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="@lang('common.close')"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+<style>
+.streaming_ipfs_size {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+</style>
+                <video id="video" class="streaming_ipfs_size" controls></video>
+                <!-- Override the CDN version
+                <script src="https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/hlsjs-ipfs-loader@latest/dist/index.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+                -->
+                <script src="https://sherbet.riff.cc/streaming/index.min.js"></script>
+                <script src="https://sherbet.riff.cc/streaming/index.js"></script>
+                <script src="https://sherbet.riff.cc/streaming/hls.js"></script>
+                <script src="https://sherbet.riff.cc/streaming.js"></script>
+                <script>
+(() => {
+   window.stream('{{ $torrent->stream_id }}');
+})();
+</script>
+                        <div class="modal-footer">
+                            <button class="btn btn-sm btn-default" type="button"
+                                data-dismiss="modal">@lang('common.close')</button>
+                        </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
 <div class="modal fade" id="modal_torrent_report" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dark">
         <div class="modal-content">
@@ -41,44 +84,6 @@
         </div>
     </div>
 </div>
-
-@if ($torrent->id == 422)
-<div class="modal fade" id="modal_streaming_ipfs" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dark">
-        <div class="modal-content">
-            <meta charset="utf-8">
-            <title>Trying to stream {{ $torrent->name }}</title>
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="@lang('common.close')"><span
-                        aria-hidden="true">×</span></button>
-            </div>
-            <div class="modal-body">
-<style>
-.streaming_ipfs_size {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-</style>
-                <video id="video" class="streaming_ipfs_size" controls></video>
-                <!-- Override the CDN version
-                <script src="https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/hlsjs-ipfs-loader@latest/dist/index.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-                -->
-                <script src="https://u.riff.cc/streaming/index.min.js"></script>
-                <script src="https://u.riff.cc/streaming/index.js"></script>
-                <script src="https://u.riff.cc/streaming/hls.js"></script>
-                <script src="https://u.riff.cc/streaming.js"></script>
-                        <div class="modal-footer">
-                            <button class="btn btn-sm btn-default" type="button"
-                                data-dismiss="modal">@lang('common.close')</button>
-                        </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endif
 
 <div class="modal fade" id="modal_torrent_delete" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dark">

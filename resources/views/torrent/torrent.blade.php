@@ -96,7 +96,7 @@
                             <i class="{{ config('other.font-awesome') }} fa-fw fa-eye"></i> @lang('common.report') @lang('torrent.torrent')
                         </button>
 
-                        @if ($torrent->id == 422)
+                        @if ( !empty($torrent->stream_id))
                         <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal_streaming_ipfs">
                             <i class="{{ config('other.font-awesome') }} fas fa-play-circle"></i> Stream (experimental)
                         </button>
